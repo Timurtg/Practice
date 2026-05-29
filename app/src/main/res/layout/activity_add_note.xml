@@ -41,8 +41,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="Срок выполнения, например 30.05.2026"
-            android:inputType="date" />
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:hint="Срок выполнения"
+            android:inputType="none" />
 
         <CheckBox
             android:id="@+id/doneCheckBox"

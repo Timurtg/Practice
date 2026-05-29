@@ -1,5 +1,6 @@
 package com.example.practice;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             holder.deadlineTextView.setText("Срок: " + note.getDeadline());
         }
 
-        holder.statusTextView.setText(note.isDone() ? "Выполнено" : "Не выполнено");
+        if (note.isDone()) {
+            holder.statusTextView.setText("Выполнено");
+            holder.statusTextView.setTextColor(Color.parseColor("#2E7D32"));
+            holder.statusIconTextView.setText("\u2713");
+            holder.statusIconTextView.setTextColor(Color.parseColor("#2E7D32"));
+        } else {
+            holder.statusTextView.setText("Не выполнено");
+            holder.statusTextView.setTextColor(Color.parseColor("#C62828"));
+            holder.statusIconTextView.setText("!");
+            holder.statusIconTextView.setTextColor(Color.parseColor("#C62828"));
+        }
+
         holder.itemView.setOnClickListener(v -> listener.onNoteClick(note));
     }
 
@@ -59,12 +71,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         TextView titleTextView;
         TextView deadlineTextView;
         TextView statusTextView;
+        TextView statusIconTextView;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             deadlineTextView = itemView.findViewById(R.id.deadlineTextView);
             statusTextView = itemView.findViewById(R.id.statusTextView);
+            statusIconTextView = itemView.findViewById(R.id.statusIconTextView);
         }
     }
 }
